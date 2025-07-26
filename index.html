@@ -1,0 +1,545 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aina Omosile Samuel</title>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background-color: #0d0d0d;
+      color: #f0f0f0;
+    }
+    .header {
+      background-color: #0a0a0a;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #00bcd4;
+    }
+    .logo span {
+      color: gold;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #ccc;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: #00bcd4;
+    }
+    .hero {
+      height: 100vh;
+      background: linear-gradient(to right, #0d0d0d, #1a1a1a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+    .hero-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    .highlight {
+      color: #00bcd4;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      height: 30px;
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      background-color: #00bcd4;
+      color: #000;
+      font-weight: bold;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #0097a7;
+    }
+    section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .section-title {
+      font-size: 2rem;
+      color: gold;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .about-content, .projects-grid {
+      font-size: 1rem;
+      line-height: 1.8;
+      background-color: #111;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      background-color: #222;
+    }
+    .project-card h3 {
+      color: #00bcd4;
+      margin-bottom: 10px;
+    }
+    .project-card p {
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+    .project-card a {
+      display: inline-block;
+      margin-top: 10px;
+      color: gold;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .project-card a:hover {
+      text-decoration: underline;
+    }
+    .skills-container {
+      background-color: #111;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .skill {
+      margin-bottom: 20px;
+    }
+    .skill-name {
+      font-weight: 500;
+      margin-bottom: 5px;
+      color: #00bcd4;
+    }
+    .progress-bar {
+      background-color: #1f1f1f;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .progress {
+      height: 10px;
+      background-color: gold;
+      width: 0;
+      transition: width 1.5s ease-in-out;
+    }
+    footer {
+      padding: 20px;
+      text-align: center;
+      background-color: #0a0a0a;
+      border-top: 1px solid #1a1a1a;
+      color: #666;
+    }
+    .cv-download {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .cv-download a {
+      background-color: #000;
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+      transition: background-color 0.3s ease;
+    }
+    .cv-download a:hover {
+      background-color: #444;
+    }
+    /* --- SIMPLIFIED CONTACT FORM STYLES --- */
+    .contact-container {
+      width: 100%;
+      max-width: 2500px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    @media (min-width: 768px) {
+      .contact-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .contact-form, .contact-info {
+        width: 48%;
+      }
+    }
+    .contact-form {
+      max-width: 500px;
+      width: 100%;
+      background: #000;
+      color: #fff;
+      padding: 35px 30px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      margin: auto;
+      animation: popIn 0.4s ease-in-out;
+    }
+    .contact-form h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #00bcd4;
+      font-size: 28px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: block;
+      color: #ccc;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #222;
+      border-radius: 12px;
+      font-size: 15px;
+      background-color: #181818;
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #00bcd4;
+      background-color: #222;
+      box-shadow: 0 0 10px rgba(0, 188, 212, 0.2);
+      outline: none;
+    }
+    .contact-form button[type="submit"] {
+      width: 100%;
+      padding: 14px;
+      background-color: #00bcd4;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .contact-form button[type="submit"]:hover {
+      background-color: #088292;
+      color: #fff;
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 188, 212, 0.2);
+    }
+    @keyframes popIn {
+      0% {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    .profile-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 20px;
+  max-width: 400px;
+  background: linear-gradient(135deg, #111 0%, #222 100%);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.profile-image-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0 30px 80px rgba(0, 188, 212, 0.3);
+}
+
+.profile-image {
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  filter: grayscale(10%) brightness(95%);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.profile-image:hover {
+  filter: none;
+  transform: scale(1.02);
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 600px) {
+  .header {
+    padding: 12px 10px;
+  }
+  .logo {
+    font-size: 1.2rem;
+  }
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    display: none; /* Hidden by default, show with JS */
+    background: #111;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    font-size: 2rem;
+    color: #00bcd4;
+    background: none;
+    border: none;
+    margin-left: auto;
+  }
+  .hero {
+    height: auto;
+    flex-direction: column;
+    padding: 10px;
+  }
+  .hero-content h2 {
+    font-size: 1.3rem;
+  }
+  .section-title {
+    font-size: 1.2rem;
+  }
+  section {
+    padding: 30px 5px;
+  }
+  .about-content, .projects-grid, .skills-container {
+    padding: 10px;
+    font-size: 0.98rem;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .contact-container {
+    flex-direction: column;
+    gap: 10px;
+    padding: 5px;
+  }
+  .contact-form {
+    padding: 15px 8px;
+  }
+  .profile-image-container {
+    max-width: 95vw;
+    padding: 5px;
+  }
+}
+
+/* Hide hamburger on desktop */
+.hamburger {
+  display: none;
+}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <h1 class="logo">Aina<span>.</span></h1>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#goals">Goals</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Open navigation">&#9776;</button>
+    </nav>
+  </header>
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h2>Hi, I'm <span class="highlight">Aina Omosile Samuel</span></h2>
+      <p><span id="typed"></span></p> <br>
+      <a href="#about" class="btn">Explore My World</a>
+    </div>
+  </section>
+  <main>
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <p>
+          Hey there! I'm Aina Omosile Samuel — a curious and ambitious Computer Science student currently studying at the University of Abuja. I love tech, I live for innovation, and I'm obsessed with building the future I want to see. Whether it's creating engaging games like or designing intuitive, user-friendly websites, I pour my creativity and passion into every line of code.
+        </p>
+        <p>
+          I am also planning on creating my on game studio called <strong>DreamAxis studio</strong>. My dream? To dominate the digital world, craft immersive experiences, and of course — rock every Samsung gadget out there. I'm not just chasing goals, I'm building empires.
+        </p>
+        <p>
+          Outside of tech, I'm someone who values loyalty, growth, and good vibes. I'm playful but driven, creative but focused. This portfolio is just one step in a long journey — so stick around, you might just witness something legendary.
+        </p>
+      </div>
+    </section>
+    <section id="projects">
+      <h2 class="section-title">My Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>Bakery Online website</h3>
+          <p>An online website for a bakery store. <br><br><br> still under production  </p>
+          <a href="bakery.html">View Project</a>
+        </div>
+        <div class="project-card">
+          <h3>My Personal Portfolio</h3>
+          <p>The site you're on right now — designed from scratch with HTML, CSS, and JavaScript. It's responsive, stylish, and 100% Aina-coded. 😎</p>
+          <a href="#">View Live</a>
+        </div>
+        <div class="project-card">
+          <h3>Coming Soon...</h3>
+          <p>More projects in the pipeline. Stay tuned for futuristic apps, advanced tools, and game-changing innovations.</p><br>
+          <a href="#goals">Preview</a>
+        </div>
+      </div>
+    </section>
+    <section id="skills">
+      <h2 class="section-title">My Skills</h2>
+      <div class="skills-container">
+        <div class="skill">
+          <div class="skill-name">HTML</div>
+          <div class="progress-bar"><div class="progress" style="width: 95%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">CSS</div>
+          <div class="progress-bar"><div class="progress" style="width: 90%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">JavaScript</div>
+          <div class="progress-bar"><div class="progress" style="width: 80%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">Game Design</div>
+          <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">UI/UX</div>
+          <div class="progress-bar"><div class="progress" style="width: 88%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">Story Writing</div>
+          <div class="progress-bar"><div class="progress" style="width: 92%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">Branding</div>
+          <div class="progress-bar"><div class="progress" style="width: 75%"></div></div>
+        </div>
+      </div>
+    </section>
+  <section id="goals">
+  <h2 class="section-title">My Goals</h2>
+  <div class="skills-container">
+    <div class="skill">
+      <div class="skill-name">🎯 Short-Term</div>
+      <p>Graduate with top results, polish my development skills, and publish more creative tech projects that make noise.</p>
+    </div>
+    <div class="skill">
+      <div class="skill-name">🚀 Mid-Term</div>
+      <p>Land an internship or role at a top-tier company like Samsung, Google, or Unity, and contribute to building real-world products.</p>
+    </div>
+    <div class="skill">
+      <div class="skill-name">👑 Long-Term</div>
+      <p>Expand DreamAxis into a global creative brand — a studio that powers games, stories, and tools the world actually loves.</p>
+    </div>
+  </div>
+</section>
+<section id="contact">
+ <div class="contact-container">
+    <form class="contact-form">
+      <h2>💬 Get in Touch</h2>
+
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Say something nice..." required></textarea>
+      </div>
+
+      <button type="submit">🚀 Send Message</button>
+    </form>
+  </div>
+  </section>
+    </main>
+    <br>
+  <footer>
+    <p>Designed & Developed by Aina Omosile Samuel &copy; 2025</p>
+  </footer>
+  <script>
+    const typed = new Typed('#typed', {
+      strings: [
+        "a Web Developer",
+        "a Student of Computer Science",
+        "a Future Game Creator",
+        "a Future Tech Mogul",
+      ],
+      typeSpeed: 60,
+      backSpeed: 30,
+      backDelay: 1000,
+      loop: true
+    });
+  </script>
+  <script>
+  // Hamburger menu toggle
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
+</body>
+</html>

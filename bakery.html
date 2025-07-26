@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery Online Shop</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #222;
+}
+
+header {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ff9800;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #222;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: #ff9800;
+}
+
+.hero {
+    text-align: center;
+    padding: 4rem 1rem 2rem 1rem;
+    background: linear-gradient(90deg, #fffbe7 0%, #ffe0b2 100%);
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.cta-btn {
+    background: #ff9800;
+    color: #fff;
+    padding: 0.9rem 2.2rem;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.cta-btn:hover {
+    background: #ffa726;
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    background: #fff8e1;
+    color: #888;
+    font-size: 1rem;
+    margin-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+/* Responsive styles */
+@media (max-width: 700px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+    .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .cta-btn {
+        width: 100%;
+        padding: 1rem 0;
+    }
+}
+.products {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.products h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #ff9800;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 1.5rem;
+    width: 270px;
+    text-align: center;
+    transition: box-shadow 0.2s;
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.product-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.product-card h3 {
+    margin: 0.5rem 0;
+    font-size: 1.3rem;
+    color: #222;
+}
+
+.product-card p {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.price {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ff9800;
+    margin-bottom: 1rem;
+}
+
+.add-to-cart-btn {
+    background: #ff9800;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.add-to-cart-btn:hover {
+    background: #ffa726;
+}
+
+/* Responsive for products */
+@media (max-width: 900px) {
+    .product-list {
+        flex-direction: column;
+        align-items: center;
+    }
+    .product-card {
+        width: 90%;
+        margin-bottom: 2rem;
+    }
+}
+.cart-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.cart-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    position: relative;
+}
+.close-cart {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: #ff9800;
+    cursor: pointer;
+}
+#cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+#cart-items li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.7rem;
+    font-size: 1rem;
+}
+#cart-total {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+/* Responsive Navbar */
+@media (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 5px;
+  }
+  .logo {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    display: none;
+    background: #fff8f0;
+    border-radius: 8px;
+    margin-top: 8px;
+    padding: 10px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .hamburger {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #d2691e;
+    margin-left: auto;
+    cursor: pointer;
+  }
+}
+
+/* Hide hamburger on desktop */
+.hamburger {
+  display: none;
+}
+
+/* Responsive hero section */
+@media (max-width: 700px) {
+  .hero {
+    padding: 20px 5px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 1.3rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+/* Responsive products grid */
+@media (max-width: 700px) {
+  .products .product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .product-card {
+    width: 100%;
+    max-width: 95vw;
+    margin: 0 auto;
+  }
+}
+
+/* Responsive modals */
+@media (max-width: 700px) {
+  .cart-modal .cart-content {
+    width: 98vw !important;
+    max-width: 400px;
+    padding: 10px;
+  }
+  #checkout-form input,
+  #checkout-form select,
+  #checkout-form button {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+}
+</style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Bakery</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#Pastries">Pastries</a></li>
+                <li><a href="#">Cart</a></li>
+                <li><a href="test.html">Contact</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Open navigation">&#9776;</button>
+        </nav>
+    </header>
+<main>
+    <section class="hero" id="home">
+        <h1>Fresh Pastries Delivered to Your Door</h1>
+        <p>Order your favorite treats online. Fast shipping, secure checkout, and delicious options!</p>
+        <a href="#" class="cta-btn">Shop Now</a>
+    </section>
+
+    <section class="products" id="Pastries">
+        <h2>Our Pastries</h2>
+        <div class="product-list">
+            <div class="product-card">
+                <img src="croissant.jpeg" alt="Croissant">
+                <h3>Croissant</h3>
+                <p>Buttery, flaky, and freshly baked.</p>
+                <span class="price">$2.50</span>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="chocolate.jpeg" alt="Chocolate Cake">
+                <h3>Chocolate Cake</h3>
+                <p>Rich chocolate cake with creamy frosting.</p>
+                <span class="price">$15.00</span>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="macarons.jpeg" alt="Macarons">
+                <h3>Macarons</h3>
+                <p>Colorful, delicate, and delicious French macarons.</p>
+                <span class="price">$8.00</span>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+            <!-- Add more products as needed -->
+        </div>
+    </section>
+    <div id="root"></div>
+</main>
+    <footer>
+        <p>&copy; 2025 Bakery Online Shop. All rights reserved.</p><p>Designed by Aina Omosile Samuel</p>
+    </footer>
+    <script src="bundle.js"></script>
+    <div id="cart-modal" class="cart-modal" style="display:none;">
+    <div class="cart-content">
+        <span class="close-cart" id="close-cart">&times;</span>
+        <h2>Your Cart</h2>
+        <ul id="cart-items"></ul>
+        <p id="cart-total"></p>
+        <button id="checkout-btn" class="cta-btn">Checkout</button>
+    </div>
+</div>
+<script>
+const products = [
+    { name: "Croissant", price: 2.5 },
+    { name: "Chocolate Cake", price: 15.0 },
+    { name: "Macarons", price: 8.0 }
+];
+
+let cart = [];
+
+function updateCart() {
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    cartItems.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, idx) => {
+        total += item.price * item.qty;
+        const li = document.createElement('li');
+        li.innerHTML = `
+            ${item.name} x${item.qty} - $${(item.price * item.qty).toFixed(2)}
+            <button onclick="removeFromCart(${idx})" style="background:none;border:none;color:#ff9800;cursor:pointer;">&times;</button>
+        `;
+        cartItems.appendChild(li);
+    });
+    cartTotal.textContent = 'Total: $' + total.toFixed(2);
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<li>Your cart is empty.</li>';
+        cartTotal.textContent = '';
+    }
+}
+
+function addToCart(idx) {
+    const prod = products[idx];
+    const found = cart.find(item => item.name === prod.name);
+    if (found) {
+        found.qty += 1;
+    } else {
+        cart.push({ ...prod, qty: 1 });
+    }
+    updateCart();
+    document.getElementById('cart-modal').style.display = 'flex';
+}
+
+function removeFromCart(idx) {
+    cart.splice(idx, 1);
+    updateCart();
+}
+
+document.querySelectorAll('.add-to-cart-btn').forEach((btn, idx) => {
+    btn.onclick = () => addToCart(idx);
+});
+
+document.querySelector('.nav-links li:nth-child(3) a').onclick = (e) => {
+    e.preventDefault();
+    updateCart();
+    document.getElementById('cart-modal').style.display = 'flex';
+};
+
+document.getElementById('close-cart').onclick = () => {
+    document.getElementById('cart-modal').style.display = 'none';
+};
+
+document.getElementById('checkout-btn').onclick = () => {
+    alert('Checkout not implemented yet!');
+};
+document.getElementById('checkout-btn').onclick = () => {
+    document.getElementById('cart-modal').style.display = 'none';
+    document.getElementById('checkout-modal').style.display = 'flex';
+};
+
+document.getElementById('close-checkout').onclick = () => {
+    document.getElementById('checkout-modal').style.display = 'none';
+};
+
+document.getElementById('checkout-form').onsubmit = function(e) {
+    e.preventDefault();
+    // You can add validation or send data to a server here
+    alert('Thank you for your order, ' + document.getElementById('name').value + '!');
+    cart = [];
+    updateCart();
+    document.getElementById('checkout-modal').style.display = 'none';
+};
+</script>
+<div id="checkout-modal" class="cart-modal" style="display:none;">
+    <div class="cart-content">
+        <span class="close-cart" id="close-checkout">&times;</span>
+        <h2>Shipping & Checkout</h2>
+        <form id="checkout-form">
+            <input type="text" id="name" placeholder="Full Name" required style="width:100%;margin-bottom:1rem;padding:0.5rem;">
+            <input type="text" id="address" placeholder="Shipping Address" required style="width:100%;margin-bottom:1rem;padding:0.5rem;">
+            <input type="tel" id="phone" placeholder="Phone Number" required style="width:100%;margin-bottom:1rem;padding:0.5rem;">
+            <select id="shipping" required style="width:100%;margin-bottom:1rem;padding:0.5rem;">
+                <option value="">Select Shipping Method</option>
+                <option value="standard">Standard - $3.00</option>
+                <option value="express">Express - $7.00</option>
+            </select>
+            <button type="submit" class="cta-btn" style="width:100%;">Place Order</button>
+        </form>
+    </div>
+</div>
+<script>
+  // Hamburger menu toggle
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
+</body>
+</html>
+<style>
+/* Responsive Navbar */
+@media (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 5px;
+  }
+  .logo {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    display: none;
+    background: #fff8f0;
+    border-radius: 8px;
+    margin-top: 8px;
+    padding: 10px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .hamburger {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #d2691e;
+    margin-left: auto;
+    cursor: pointer;
+  }
+}
+
+/* Hide hamburger on desktop */
+.hamburger {
+  display: none;
+}
+
+/* Responsive hero section */
+@media (max-width: 700px) {
+  .hero {
+    padding: 20px 5px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 1.3rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+/* Responsive products grid */
+@media (max-width: 700px) {
+  .products .product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .product-card {
+    width: 100%;
+    max-width: 95vw;
+    margin: 0 auto;
+  }
+}
+
+/* Responsive modals */
+@media (max-width: 700px) {
+  .cart-modal .cart-content {
+    width: 98vw !important;
+    max-width: 400px;
+    padding: 10px;
+  }
+  #checkout-form input,
+  #checkout-form select,
+  #checkout-form button {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+}
+</style>
